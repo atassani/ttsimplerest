@@ -11,7 +11,7 @@ public class DocumentServiceImpl implements DocumentService {
 	@Override
 	public DocumentOutput getDocumentAsJson(Long id, String version, String appId) {
 		Document document;
-		document = new Document(1, "El documento " + version + ", " + appId);
+		document = new Document(1, "El document " + version + ", " + appId);
 		
 		DocumentOutput output = new DocumentOutput();
 		output.setId(document.getId());
