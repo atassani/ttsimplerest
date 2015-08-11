@@ -37,6 +37,7 @@ public interface DocumentServiceRest {
 
 	@GET
 	@Path("/json/{id}")
+	@ApiOperation(value = "Busca documento JSON por ID", notes = "Más notas sobre el método", response = DocumentOutput.class)
 	@Produces("application/json")
 	public DocumentOutput getDocumentAsJson(@PathParam("id") Long id, @QueryParam("version") String version,
 			@QueryParam("appId") String appId);

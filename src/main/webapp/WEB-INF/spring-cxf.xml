@@ -26,7 +26,7 @@
 
 	<jaxrs:server id="documentRESTService" address="/rest" >
 		<jaxrs:serviceBeans>
-<!-- 			<ref bean="documentServiceRest" /> -->
+ 			<ref bean="documentServiceRest" />
 			 <ref bean="swaggerResourceJSON"/>
 		</jaxrs:serviceBeans>
  		<jaxrs:providers>
@@ -44,7 +44,7 @@
 	<bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
 	  <property name="resourcePackage" value="com.tonitassani.cxf.document.contract"/>
 	  <property name="version" value="2.0"/>
-	  <property name="basePath" value="http://localhost:8080/ws/rest"/>
+	  <property name="basePath" value="/ws/rest"/>
 	  <property name="title" value="TTTPetstore sample app"/>
 	  <property name="description" value="TTTThis is a app."/>
 	  <property name="contact" value="TTTapiteam@wordnik.com"/>
