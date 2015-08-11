@@ -5,32 +5,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "DocumentInput")
 public class DocumentInput {
 
-	private String company;
-	private int id;
-	private String name;
+	private Long id;
+	private String version;
+	private String appId;
 
-	public String getCompany() {
-		return company;
-	}
-
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	public String getVersion() {
+		return version;
 	}
-
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	public String getAppId() {
+		return appId;
+	}
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
 }

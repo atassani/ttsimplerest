@@ -1,18 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:cxf="http://cxf.apache.org/core"
 	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
 	xsi:schemaLocation="
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
          http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
-         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+         http://cxf.apache.org/bindings/soap  http://cxf.apache.org/schemas/configuration/soap.xsd
+         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-	<bean id="documentService" class="com.tonitassani.cxf.document.service.DocumentServiceImpl" />
+	<bean id="documentServiceRest" class="com.tonitassani.cxf.document.service.DocumentServiceRestImpl" />
+	<bean id="documentServiceSoap" class="com.tonitassani.cxf.document.service.DocumentServiceSoapImpl" />
 
-	<jaxrs:server id="documentRESTService" address="/version" >
+	<jaxws:endpoint id="documentSOAPService" implementor="#documentServiceSoap" address="/soap" />
+	
+	<!-- Swagger API listing resource -->
+	<bean id="swaggerResourceJSON" class="com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON" />
+
+	<!-- Swagger writers -->
+	<bean id="resourceWriter" class="com.wordnik.swagger.jaxrs.listing.ResourceListingProvider" />
+	<bean id="apiWriter" class="com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider" />
+
+	<jaxrs:server id="documentRESTService" address="/rest" >
 		<jaxrs:serviceBeans>
-			<ref bean="documentService" />
+<!-- 			<ref bean="documentServiceRest" /> -->
+			 <ref bean="swaggerResourceJSON"/>
 		</jaxrs:serviceBeans>
+ 		<jaxrs:providers>
+ 			<!-- 
+            <bean class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
+                <property name="dropRootElement" value="true"/>
+                <property name="supportUnwrapped" value="true"/>
+            </bean>
+            -->
+            <ref bean="resourceWriter"/>
+            <ref bean="apiWriter"/>
+        </jaxrs:providers>		
 	</jaxrs:server>
+		
+	<bean id="swaggerConfig" class="com.wordnik.swagger.jaxrs.config.BeanConfig">
+	  <property name="resourcePackage" value="com.tonitassani.cxf.document.contract"/>
+	  <property name="version" value="2.0"/>
+	  <property name="basePath" value="http://localhost:8080/ws/rest"/>
+	  <property name="title" value="TTTPetstore sample app"/>
+	  <property name="description" value="TTTThis is a app."/>
+	  <property name="contact" value="TTTapiteam@wordnik.com"/>
+	  <property name="license" value="TTTApache 2.0 License"/>
+	  <property name="licenseUrl" value="http://TTTwww.apache.org/licenses/LICENSE-2.0.html"/>
+	  <property name="scan" value="true"/>
+	</bean>
 	
 </beans>

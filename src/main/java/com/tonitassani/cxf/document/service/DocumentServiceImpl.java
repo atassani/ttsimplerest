@@ -1,15 +1,13 @@
 package com.tonitassani.cxf.document.service;
 
 import com.tonitassani.cxf.document.contract.DocumentOutput;
-import com.tonitassani.cxf.document.contract.DocumentService;
 import com.tonitassani.cxf.document.domain.Document;
 
-public class DocumentServiceImpl implements DocumentService {
+public class DocumentServiceImpl {
 
 	public DocumentServiceImpl() {}
 
-	@Override
-	public DocumentOutput getDocumentAsJson(Long id, String version, String appId) {
+	public DocumentOutput getDocument(Long id, String version, String appId) {
 		Document document;
 		document = new Document(id.intValue(), "El document version=" + version + ", appId=" + appId);
 		
@@ -19,10 +17,4 @@ public class DocumentServiceImpl implements DocumentService {
 
 		return output;
 	}
-
-	@Override
-	public DocumentOutput getDocumentAsXml(Long id, String version, String appId) {
-		return getDocumentAsJson(id, version, appId);
-	}
-
 }
