@@ -9,7 +9,7 @@ public class DocumentServiceImpl {
 
 	public DocumentOutput getDocument(Long id, String version, String appId) {
 		Document document;
-		document = new Document(id.intValue(), "El document version=" + version + ", appId=" + appId);
+		document = new Document(id.intValue(), "El document: version=" + version + ", appId=" + appId);
 		
 		DocumentOutput output = new DocumentOutput();
 		output.setId(document.getId());
