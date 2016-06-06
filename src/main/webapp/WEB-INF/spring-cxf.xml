@@ -45,11 +45,11 @@
 	  <property name="resourcePackage" value="com.tonitassani.cxf.document.contract"/>
 	  <property name="version" value="2.0"/>
 	  <property name="basePath" value="/ws/rest"/>
-	  <property name="title" value="TTTPetstore sample app"/>
-	  <property name="description" value="TTTThis is a app."/>
-	  <property name="contact" value="TTTapiteam@wordnik.com"/>
-	  <property name="license" value="TTTApache 2.0 License"/>
-	  <property name="licenseUrl" value="http://TTTwww.apache.org/licenses/LICENSE-2.0.html"/>
+	  <property name="title" value="Petstore sample app"/>
+	  <property name="description" value="This is a app."/>
+	  <property name="contact" value="apiteam@wordnik.com"/>
+	  <property name="license" value="Apache 2.0 License"/>
+	  <property name="licenseUrl" value="http://www.apache.org/licenses/LICENSE-2.0.html"/>
 	  <property name="scan" value="true"/>
 	</bean>
 	
