@@ -15,25 +15,27 @@ import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 import com.tonitassani.cxf.document.contract.DocumentOutput;
 
-@Path(value = "/doc")
-@Api(value = "/doc", description = "Recupera el id del documento")
+@Path(value = "/documents")
+@Api(value = "/documents", description = "Sample API to manage documents ")
 @Service("documentService")
 public interface DocumentServiceRest {
 
 	@GET
 	@Path("/xml/{id}")
-	@ApiOperation(value = "Busca documento por ID", notes = "Más notas sobre el método", response = DocumentOutput.class)
+	@ApiOperation(value = "Retrieves a document in XML format by its ID", notes = "Additional notes", response = DocumentOutput.class)
 	@ApiResponses(value= {
-			@ApiResponse(code = 400, message = "ID Invalido"),
-			@ApiResponse(code = 404, message = "Documento no encontrado") 
+			@ApiResponse(code = 400, message = "Invalid ID"),
+			@ApiResponse(code = 404, message = "Document not found")
 	})	
 	@Produces("application/xml")
 	public DocumentOutput getDocumentAsXml(
-			@ApiParam(value="ID del documento a recuperar", required=true)
+			@ApiParam(value="Document Id to retrieve", required=true)
 			@PathParam("id") 
 			Long id, 
-			@QueryParam("version") String version,
-			@QueryParam("appId") String appId);
+			@QueryParam("version")
+            String version,
+			@QueryParam("appId")
+            String appId);
 
 	@GET
 	@Path("/json/{id}")
